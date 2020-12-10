@@ -30,6 +30,121 @@ export class HomeScreen extends React.Component {
     }
   }
 
+  // load in the data from Firebase
+  getListInventory = async () => {
+    let qSnap = await listCollRef.get();
+    qSnap.forEach(qDocSnap => {
+      let key = qDocSnap.id;
+      let data = qDocSnap.data();
+      data.key = key;
+      this.state.theList.push(data);
+    });
+
+    // update the app display with our appInventory list
+    this.setState({
+      theList: this.state.theList
+    });
+  }
+
+  componentDidMount() {
+    // load in data from Firebase upon component mount
+    // because this is the HomeScreen this will only run one time, upon app load
+    this.getListInventory();
+    this.focusUnsubscribe = this.props.navigation.addListener('focus', this.onFocus);
+  }
+
+  componentWillUnmount() {
+    this.focusUnsubscribe();
+  }
+
+  onFocus = () => {
+    if (this.props.route.params) {
+      const { operation, list } = this.props.route.params;
+      // if the add button is pressed on HomeScreen
+      if (operation === 'addMovieList') {
+        // trigger addList function and add text from the list object (captured in the ListScreen JSX)
+        this.addList(list.text);
+        // if the edit button is pressed on HomeScreen
+      } else if (operation === 'editMovieList') {
+        // trigger updateList function and pass in the list object's key and text properties (captured in the ListScreen JSX)
+        this.updateList(list.key, list.text);
+      }
+    }
+    this.props.navigation.setParams({ operation: 'none' });
+  }
+
+  addList = async (listText) => {
+    // sending our added list to firebase
+    let listRef = await listCollRef.add({ text: listText });
+
+    if (listText) { // false if undefined
+      // updating our list with list text and a unique firebase ID
+      this.state.theList.push({ text: listText, key: '' + listRef.id });
+    }
+    // update list state for view
+    this.setState({ theList: this.state.theList });
+  }
+
+  updateList = async (listKey, listText) => {
+    // firebase data //
+    // getting a document reference using the list key that was passed in
+    let docRef = listCollRef.doc(listKey);
+    // updating the respective document with new text
+    await docRef.update({ text: listText });
+
+    // local in-app data //
+    // grabbing theList (list of lists) in its current state
+    let { theList } = this.state;
+    let foundIndex = -1;
+    for (let idx in theList) {
+      // if the key matches the item the user has selected
+      if (theList[idx].key === listKey) {
+        // assign the foundIndex to that index
+        foundIndex = idx;
+        break;
+      }
+    }
+    // if the foundIndex is not a placeholder, i.e. if it has an index value
+    if (foundIndex !== -1) { // silently fail if item not found
+      // update the list's text
+      theList[foundIndex].text = listText;
+    }
+    this.setState({ theList: this.state.theList });
+  }
+
+  deleteList = async (listKey) => {
+    // firebase //
+    // access a document reference through the list key passed in
+    let docRef = listCollRef.doc(listKey);
+    // delete that document
+    await docRef.delete();
+
+    // local in-app data //
+    let { theList } = this.state;
+    let foundIndex = -1;
+    for (let idx in theList) {
+      if (theList[idx].key === listKey) {
+        foundIndex = idx;
+        break;
+      }
+    }
+    if (foundIndex !== -1) { // silently fail if item not found
+      theList.splice(foundIndex, 1); // remove one element 
+    }
+    this.setState({ theList: this.state.theList });
+  }
+
+  onListDelete = (listKey) => {
+    this.deleteList(listKey);
+  }
+
+  onListEdit = (list) => {
+    this.props.navigation.navigate("MovieList", {
+      operation: 'editMovieList',
+      item: list
+    });
+  }
+
   render() {
     return (
       <View style={homeStyles.container}>

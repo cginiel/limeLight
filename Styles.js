@@ -89,7 +89,7 @@ export const loginStyles = StyleSheet.create({
 });
 
 // will need to change to "home styles"
-export const peopleStyles = StyleSheet.create({
+export const homeStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -97,11 +97,15 @@ export const peopleStyles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: 20
     },
-    peopleListContainer: {
-        flex: 0.5,
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-        width: '90%',
+    profileContainer: {
+        flex: 0.25,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // width: '90%',
+    },
+    displayName: {
+      fontSize: 24,
+      fontWeight: 'bold',
     },
     separator: {
         backgroundColor: colors.primaryLight,

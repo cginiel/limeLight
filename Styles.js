@@ -88,7 +88,6 @@ export const loginStyles = StyleSheet.create({
     }
 });
 
-// will need to change to "home styles"
 export const homeStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -97,33 +96,253 @@ export const homeStyles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: 20
     },
-    profileContainer: {
-        flex: 0.25,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        // width: '90%',
-    },
-    displayName: {
-      fontSize: 24,
-      fontWeight: 'bold',
-    },
-    separator: {
-        backgroundColor: colors.primaryLight,
-        height: 1,
-        width: '90%',
-        alignSelf: 'center'
-    },
-    personRow: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+      profileContainer: {
+          flex: 0.25,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          // width: '90%',
+      },
+      displayName: {
+        fontSize: 24,
+        fontWeight: 'bold',
+      },
+      body: {
+        flex: 0.75,
+        alignItems: 'stretch',
+        justifyContent: 'center',
         width: '100%',
-        paddingVertical: 10
-    },
-    personText: {
-        fontSize: 16,
-    }
+        padding: '5%',
+      },
+        // listHeaderText: {
+        //   fontSize: 16,
+        //   padding: 15
+        // },
+        listContainer: {
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'stretch', // this turns out to be important!
+          padding: 15,
+        },
+        separator: {
+            backgroundColor: colors.primaryLight,
+            height: 1,
+            width: '90%',
+            alignSelf: 'center'
+        },
+        listItemContainer: {
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 10,
+        },
+          listItemTextContainer: {
+            flex: 0.8,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+          },
+            listItemText: {
+              fontSize: 18,
+              paddingLeft: 20,
+
+            },
+          listItemButtonContainer: {
+            flex: 0.2,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          },
+        placeholderText: {
+          alignItems: "center",
+          justifyContent: "center",
+          color: "black"
+        },
+        homescreenListEmpty: {
+          fontSize: 16,
+        },
+        listscreenListEmpty: {
+          fontSize: 12
+        },
+    // personRow: {
+    //     flex: 1,
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'center',
+    //     width: '100%',
+    //     paddingVertical: 10
+    // },
+    // personText: {
+    //     fontSize: 16,
+    // }
+});
+
+export const movieListStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
+  },
+  separator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: colors.primaryLight
+  },
+  header: {
+    flex: 0.1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+    padding: 10,
+    backgroundColor: colors.primary,
+  },
+  headerText: {
+    fontSize: 24,
+    color: "white"
+  },
+  body: {
+    flex: 0.4,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    width: '100%',
+    padding: '5%',
+  },
+  listHeaderText: {
+    fontSize: 16,
+    padding: 15
+  },
+  listContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch', // this turns out to be important!
+    padding: 15,
+  },
+  toggleSwitch: {
+    flexDirection: 'row',
+  },
+  toggleSwitchText: {
+    paddingLeft: 20
+  },
+  // Home Screen body
+  placeholderText: {
+    alignItems: "center",
+    justifyContent: "center",
+    color: "black"
+  },
+  homescreenListEmpty: {
+    fontSize: 16,
+  },
+  listscreenListEmpty: {
+    fontSize: 12
+  },
+  listItemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  listItemTextContainer: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  listItemText: {
+    fontSize: 18,
+    paddingLeft: 20,
+
+  },
+  listItemButtonContainer: {
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+
+  // List Screen body
+  textInputContainer: {
+    flex: 0.3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInputLabel: {
+    fontSize: 18,
+    paddingRight: 15
+  },
+  textInputBox: {
+    borderColor: colors.outline,
+    borderTopColor: '#fff',
+    borderRightColor: '#fff',
+    borderLeftColor: '#fff',
+    borderWidth: 1,
+    width: '50%',
+    height: 40,
+    fontSize: 18,
+    padding: 5,
+  },
+  listOfItemsContainer: {
+    flex: 0.8,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch', // this turns out to be important!
+    padding: 15,
+  },
+  toggleSwitch: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  toggleSwitchText: {
+    paddingLeft: 13
+  },
+  ItemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // paddingVertical: 5,
+  },
+  ItemTextContainer: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  ItemText: {
+    fontSize: 14,
+    // paddingLeft: 20,
+
+  },
+  ItemButtonContainer: {
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  footer: {
+    flex: 0.4,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+
+  // List Screen footer
+  footerButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  footerButton: {
+    flex: 0.25,
+    borderRadius: 12,
+    borderColor: colors.outline,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    marginHorizontal: '5%',
+    backgroundColor: colors.primaryDark
+  },
+  footerButtonText: {
+    color: "white"
+  }
 });
 
 export const chatStyles = StyleSheet.create({

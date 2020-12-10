@@ -4,8 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginScreen } from './LoginScreen';
 import { HomeScreen } from './HomeScreen';
-import { ChatScreen } from './ChatScreen';
-import { CameraScreen } from './CameraScreen';
+import { MovieListScreen } from './MovieListScreen';
+// import { ChatScreen } from './ChatScreen';
+// import { CameraScreen } from './CameraScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,8 +21,9 @@ function App() {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Chat" component={ChatScreen} />
-        <Stack.Screen name="Camera" component={CameraScreen} />
+        <Stack.Screen name="MovieList" component={MovieListScreen} />
+        {/* <Stack.Screen name="Chat" component={ChatScreen} /> */}
+        {/* <Stack.Screen name="Camera" component={CameraScreen} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>

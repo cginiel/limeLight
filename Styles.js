@@ -158,7 +158,8 @@ export const homeStyles = StyleSheet.create({
           color: "black"
         },
         homescreenListEmpty: {
-          fontSize: 16,
+          fontSize: 12,
+          fontStyle: "italic"
         },
         listscreenListEmpty: {
           fontSize: 12

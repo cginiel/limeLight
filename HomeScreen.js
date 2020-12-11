@@ -43,10 +43,14 @@ export class HomeScreen extends React.Component {
 
   // load in the data from Firebase
   getListInventory = async () => {
-    let qSnap = await firebase.firestore()
+    // collection reference
+    let movieGenresListRef = firebase.firestore()
       .collection('users')
       .doc(this.currentUser.key)
-      .collection('movieGenresList').get();
+      .collection('movieGenresList')
+
+    // load movie genres list into user profile
+    let qSnap = await movieGenresListRef.get();
     qSnap.forEach(qDocSnap => {
       let key = qDocSnap.id;
       let data = qDocSnap.data();
@@ -88,6 +92,8 @@ export class HomeScreen extends React.Component {
   }
 
   addList = async (listText) => {
+    // this creates a list on the user's profile.
+    // the intention for this project is that the list is a movie genre, e.g. "Horror Films"
     let movieGenresListRef = firebase.firestore()
       .collection('users')
       .doc(this.currentUser.key)
@@ -104,9 +110,13 @@ export class HomeScreen extends React.Component {
   }
 
   updateList = async (listKey, listText) => {
-    // firebase data //
-    // getting a document reference using the list key that was passed in
-    let docRef = listCollRef.doc(listKey);
+    
+    // getting a document reference to a specific list
+    let docRef = firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList')
+      .doc(listKey);
     // updating the respective document with new text
     await docRef.update({ text: listText });
 
@@ -133,7 +143,11 @@ export class HomeScreen extends React.Component {
   deleteList = async (listKey) => {
     // firebase //
     // access a document reference through the list key passed in
-    let docRef = listCollRef.doc(listKey);
+    let docRef = firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList')
+      .doc(listKey);
     // delete that document
     await docRef.delete();
 
@@ -217,7 +231,7 @@ export class HomeScreen extends React.Component {
               ListEmptyComponent={() =>
                 <View style={homeStyles.placeholderText}>
                   <Text style={homeStyles.homescreenListEmpty}>
-                    You don't have any lists.
+                    You don't have any movie lists.
                     </Text>
                   <Text style={homeStyles.homescreenListEmpty}>
                     Tap "+" below to add one.

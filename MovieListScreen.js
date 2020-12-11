@@ -37,7 +37,11 @@ export class MovieListScreen extends React.Component {
 
   getItemInventory = async () => {
     // gets a query snapshot of our itemsCollection
-    let qSnap = await db.collection('listCollection').doc(this.theList.key).collection('itemsCollection').get();
+    let qSnap = await db
+    .collection('listCollection')
+    .doc(this.theList.key)
+    .collection('itemsCollection')
+    .get();
     // loops through the items and assigns key/value pairs
     // then pushes information from firebase into the local app memory
     qSnap.forEach(qDocSnap => {

@@ -7,6 +7,14 @@ import { Feather } from '@expo/vector-icons';
 import { homeStyles, colors } from './Styles';
 import { getDataModel } from './DataModel';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import firebase from 'firebase';
+import '@firebase/firestore';
+import '@firebase/storage';
+import { firebaseConfig } from './Secrets';
+
+if (firebase.apps.length === 0) { // aka !firebase.apps.length
+  firebase.initializeApp(firebaseConfig);
+}
 
 export class HomeScreen extends React.Component {
   constructor(props) {
@@ -28,11 +36,17 @@ export class HomeScreen extends React.Component {
       people: otherUsers,
       theList: []
     }
+    // console.log(this.dataModel.usersRef.doc(this.currentUser.key));
+    // console.log(this.currentUser.key);
   }
+  
 
   // load in the data from Firebase
   getListInventory = async () => {
-    let qSnap = await listCollRef.get();
+    let qSnap = await firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList').get();
     qSnap.forEach(qDocSnap => {
       let key = qDocSnap.id;
       let data = qDocSnap.data();
@@ -74,12 +88,16 @@ export class HomeScreen extends React.Component {
   }
 
   addList = async (listText) => {
+    let movieGenresListRef = firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList');
     // sending our added list to firebase
-    let listRef = await listCollRef.add({ text: listText });
+    let addedMovieGenre = await movieGenresListRef.add({ text: listText });
 
     if (listText) { // false if undefined
       // updating our list with list text and a unique firebase ID
-      this.state.theList.push({ text: listText, key: '' + listRef.id });
+      this.state.theList.push({ text: listText, key: '' + addedMovieGenre.id });
     }
     // update list state for view
     this.setState({ theList: this.state.theList });

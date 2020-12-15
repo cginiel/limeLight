@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, TextInput, Text, View, 
   FlatList, TouchableOpacity, Alert } 
   from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons'; 
+import { Ionicons, Feather } from '@expo/vector-icons';
 import { homeStyles, colors } from './Styles';
 import { getDataModel } from './DataModel';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -247,7 +246,7 @@ export class HomeScreen extends React.Component {
             onPress={() =>
               this.props.navigation.navigate('MovieList',
                 { operation: "addMovieList" })}>
-            <Ionicons name="md-add-circle"
+            <Ionicons name="ios-add"
               size={80}
               color={colors.primaryDark} />
           </TouchableOpacity>

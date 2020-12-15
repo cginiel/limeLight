@@ -333,16 +333,16 @@ export const movieListStyles = StyleSheet.create({
   footerButton: {
     flex: 0.25,
     borderRadius: 12,
-    borderColor: colors.outline,
+    borderColor: colors.primaryDark,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
     marginHorizontal: '5%',
-    backgroundColor: colors.primaryDark
+    backgroundColor: "#fff"
   },
   footerButtonText: {
-    color: "white"
+    color: colors.primaryDark
   }
 });
 

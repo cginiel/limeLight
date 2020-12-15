@@ -4,8 +4,7 @@ import {
   FlatList, TouchableOpacity, Alert
 }
   from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons, Feather } from '@expo/vector-icons';
 import { movieListStyles, colors } from './Styles';
 import { getDataModel } from './DataModel';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
@@ -265,7 +264,7 @@ export class MovieListScreen extends React.Component {
               onPress={() =>
                 this.props.navigation.navigate('AddItems',
                   { operation: "addItems" })}>
-              <Ionicons name="md-add-circle"
+              <Ionicons name="ios-add"
                 size={80}
                 color={colors.primaryDark} />
             </TouchableOpacity>

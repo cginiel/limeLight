@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
     primary: '#68D48D', // LimeLight Green
-    primaryDark: '#303F9F', // MD Brown 300
-    primaryLight: '#E8EAF6', // MD Amber 200
-    outline: '#fff', // MD Gray 400
+    primaryDark: '#303F9F', // Dark Blue
+    primaryLight: '#E8EAF6', // Light Blue
+    outline: '#fff', // white
     placeholderTextColor: '#bebebe' // Mid Grey
 }
 
@@ -235,7 +235,8 @@ export const movieListStyles = StyleSheet.create({
     fontSize: 16,
   },
   listscreenListEmpty: {
-    fontSize: 12
+    fontSize: 12,
+    fontStyle: "italic"
   },
   listItemContainer: {
     flex: 1,

@@ -170,7 +170,7 @@ export class HomeScreen extends React.Component {
   }
 
   onListEdit = (list) => {
-    this.props.navigation.navigate("MovieList", {
+    this.props.navigation.navigate("Movie Lists", {
       operation: 'editMovieList',
       item: list
     });
@@ -244,7 +244,7 @@ export class HomeScreen extends React.Component {
           {/* add list button */}
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.navigate('MovieList',
+              this.props.navigation.navigate('Movie Lists',
                 { operation: "addMovieList" })}>
             <Ionicons name="ios-add"
               size={80}

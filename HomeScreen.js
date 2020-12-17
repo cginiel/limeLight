@@ -46,7 +46,7 @@ export class HomeScreen extends React.Component {
     let movieGenresListRef = firebase.firestore()
       .collection('users')
       .doc(this.currentUser.key)
-      .collection('movieGenresList')
+      .collection('movieGenresList');
 
     // load movie genres list into user profile
     let qSnap = await movieGenresListRef.get();

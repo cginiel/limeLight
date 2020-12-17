@@ -347,6 +347,25 @@ export const movieListStyles = StyleSheet.create({
   }
 });
 
+export const movieSelect = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
+  },
+  listContainer: {},
+  separator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: colors.primaryLight
+  },
+  listItemContainer: {},
+  listItemTextContainer: {},
+  placeholderText: {},
+  homescreenListEmpty: {}
+});
+
 export const chatStyles = StyleSheet.create({
     container: {
         flex: 1,

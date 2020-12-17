@@ -8,6 +8,14 @@ import { Ionicons, Feather } from '@expo/vector-icons';
 import { movieListStyles, colors } from './Styles';
 import { getDataModel } from './DataModel';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import firebase from 'firebase';
+import '@firebase/firestore';
+import '@firebase/storage';
+import { firebaseConfig } from './Secrets';
+
+if (firebase.apps.length === 0) { // aka !firebase.apps.length
+  firebase.initializeApp(firebaseConfig);
+}
 
 export class MovieListScreen extends React.Component {
 
@@ -250,7 +258,7 @@ export class MovieListScreen extends React.Component {
               }}
               ListEmptyComponent={() =>
                 <View style={movieListStyles.placeholderText}>
-                  <Text style={movieListStyles.listscreenListEmpty}>Your list doesn't have any items.</Text>
+                  <Text style={movieListStyles.listscreenListEmpty}>Your list doesn't have any movies.</Text>
                   <Text style={movieListStyles.listscreenListEmpty}>Tap "+" below to add one.</Text>
                 </View>
               }
@@ -259,10 +267,10 @@ export class MovieListScreen extends React.Component {
         </View>
         <View style={movieListStyles.footer}>
           <View>
-            {/* add items and navigate to addItems page */}
+            {/* add items and navigate to MovieSelectScreen */}
             <TouchableOpacity
               onPress={() =>
-                this.props.navigation.navigate('AddItems',
+                this.props.navigation.navigate('Select Movie',
                   { operation: "addItems" })}>
               <Ionicons name="ios-add"
                 size={80}

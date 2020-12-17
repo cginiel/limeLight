@@ -18,6 +18,8 @@ export class MovieSelectScreen extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.operation = this.props.route.params.operation;
     
     this.moviesRef = firebase.firestore().collection('movies');
 
@@ -39,7 +41,6 @@ export class MovieSelectScreen extends React.Component {
       data.key = key;
       this.state.movies.push(data);
     });
-    console.log("FIREBASE MOVIES: ", this.state.movies);
 
     this.setState({
       movies: this.state.movies
@@ -60,7 +61,25 @@ export class MovieSelectScreen extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View style={movieSelect.listItemContainer}>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      let theMovie = {};
+                      if (this.operation === 'addMovie') {
+                        theMovie = {
+                          title: item.title,
+                          director: item.director,
+                          year: item.year,
+                          genre: item.genre,
+                          key: item.key
+                        }
+                      } else {
+                        theMovie = this.props.route.params.movie;
+                      }
+                      this.props.navigation.navigate('Movie Lists', {
+                        operation: this.operation,
+                        movie: theMovie
+                      });
+                    }}>
                     <View style={movieSelect.listItemTextContainer}>
                       <Text>
                         {item.title}

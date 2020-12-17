@@ -25,6 +25,7 @@ export class MovieListScreen extends React.Component {
     this.operation = this.props.route.params.operation;
     // this.theList contains our list objects
     this.theList = this.props.route.params.item;
+    this.currentUser = this.props.route.params.currentUser;
 
     let initText = '';
     // if you press the edit button on HomeScreen
@@ -44,10 +45,12 @@ export class MovieListScreen extends React.Component {
 
   getItemInventory = async () => {
     // gets a query snapshot of our itemsCollection
-    let qSnap = await db
-    .collection('listCollection')
+    let qSnap = await firebase.firestore()
+    .collection('users')
+    .doc(this.currentUser.key)
+    .collection('movieGenresList')
     .doc(this.theList.key)
-    .collection('itemsCollection')
+    .collection('movies')
     .get();
     // loops through the items and assigns key/value pairs
     // then pushes information from firebase into the local app memory
@@ -76,11 +79,12 @@ export class MovieListScreen extends React.Component {
 
   onFocus = () => {
     if (this.props.route.params) {
-      const { operation, item } = this.props.route.params;
+      console.log("PARAMS: ", this.props.route.params);
+      const { operation, item, movie } = this.props.route.params;
       // if user presses the add button on ListScreen
-      if (operation === 'addItems') {
+      if (operation === 'addMovie') {
         // trigger addItem function and pass in the text property of that item (found in the AddItemsScreen JSX)
-        this.addItem(item.text);
+        this.addItem(item, movie);
         // if user presses the item text (which is how we will edit an item in this case)
       } else if (operation === 'editItems') {
         // trigger editItems function and pass in the item's text and key properties (found in the AddItemsScreen JSX)
@@ -90,15 +94,29 @@ export class MovieListScreen extends React.Component {
     this.props.navigation.setParams({ operation: 'none' });
   }
 
-  addItem = async (itemText) => {
-    let itemsRef = db.collection('listCollection')
-      .doc(this.theList.key)
-      .collection('itemsCollection');
+  addItem = async (item, movie) => {
+    console.log("ITEM IN ADDITEM: ", item);
+    let itemsRef = firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList')
+      .doc(item.key)
+      .collection('movies')
 
-    let addedItem = await itemsRef.add({ text: itemText, checked: false });
+    let addedItem = await itemsRef.add({ 
+      title: movie.title,
+      director: movie.director,
+      year: movie.year,
+      genre: movie.genre,
+    });
 
-    if (itemText) { // false if undefined
-      this.state.itemsList.push({ text: itemText, checked: false, key: '' + addedItem.id });
+    if (item) { // false if undefined
+      this.state.itemsList.push({
+        title: movie.title,
+        director: movie.director,
+        year: movie.year,
+        genre: movie.genre,
+        key: '' + addedItem.id });
     }
     this.setState({ itemsList: this.state.itemsList });
   }
@@ -136,9 +154,12 @@ export class MovieListScreen extends React.Component {
   deleteItem = async (itemKey) => {
     // firebase //
     // access a document reference through the item key passed in
-    let itemsDocRef = db.collection('listCollection')
+    let itemsDocRef = firebase.firestore()
+      .collection('users')
+      .doc(this.currentUser.key)
+      .collection('movieGenresList')
       .doc(this.theList.key)
-      .collection('itemsCollection')
+      .collection('movies')
       .doc(itemKey);
     // delete that document
     await itemsDocRef.delete();
@@ -271,7 +292,7 @@ export class MovieListScreen extends React.Component {
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate('Select Movie',
-                  { operation: "addItems" })}>
+                  { operation: "addMovie" })}>
               <Ionicons name="ios-add"
                 size={80}
                 color={colors.primaryDark} />

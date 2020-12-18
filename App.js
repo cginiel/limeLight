@@ -9,6 +9,9 @@ import { MovieSelectScreen } from './MovieSelectScreen';
 // import { ProductView } from './FriendDetail';
 // import { ChatScreen } from './ChatScreen';
 // import { CameraScreen } from './CameraScreen';
+import { SearchFriendsScreen } from './SearchableList';
+import {FriendProfileScreen} from './FriendDetail';
+import {FriendsListScreen} from './FriendsList';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +31,9 @@ function App() {
         {/* <Stack.Screen name="Friend Detail" component={FriendDetail} /> */}
         {/* <Stack.Screen name="Chat" component={ChatScreen} /> */}
         {/* <Stack.Screen name="Camera" component={CameraScreen} /> */}
+        <Stack.Screen name="Search People" component={SearchFriendsScreen} />
+        <Stack.Screen name= "Friend Profile" component={FriendProfileScreen} />
+        <Stack.Screen name= "Friend List" component={FriendsListScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

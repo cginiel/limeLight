@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
     primary: '#68D48D', // LimeLight Green
-    primaryDark: '#303F9F', // Dark Blue
+    primaryDark: '#3D7851', // Dark Green
     primaryLight: '#E8EAF6', // Light Blue
     outline: '#fff', // white
     placeholderTextColor: '#bebebe' // Mid Grey
@@ -100,6 +100,7 @@ export const homeStyles = StyleSheet.create({
           flex: 0.25,
           justifyContent: 'space-between',
           alignItems: 'center',
+         
           // width: '90%',
       },
       displayName: {
@@ -135,7 +136,8 @@ export const homeStyles = StyleSheet.create({
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingVertical: 10,
+          paddingVertical: 5,
+          marginTop: 20,
         },
           listItemTextContainer: {
             flex: 0.8,
@@ -175,6 +177,45 @@ export const homeStyles = StyleSheet.create({
     // personText: {
     //     fontSize: 16,
     // }
+    // footer: {
+    //   flex: 1,
+      
+    //   alignItems: 'center',
+    // },
+  
+    // List Screen footer
+    footerButtonContainer: {
+      flexDirection: 'row',
+      // justifyContent: 'space-around',
+
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.outline,
+      borderRadius: 6,
+      // backgroundColor: colors.primary,
+      width: '300%',
+      height: 50
+    },
+    footerButton: {
+      flex: 0.1,
+      borderRadius: 12,
+      borderColor: colors.primaryDark,
+      borderWidth: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 10,
+      marginHorizontal: '5%',
+      backgroundColor: colors.primary,
+      alignItems: "flex-start",
+      alignSelf: "flex-start",
+      // width: '100%',
+    },
+    footerButtonText: {
+      color: 'white', 
+      fontSize: 15,
+      textAlign: 'center',
+      fontWeight: '200',
+    }
 });
 
 export const movieListStyles = StyleSheet.create({
@@ -329,10 +370,19 @@ export const movieListStyles = StyleSheet.create({
   // List Screen footer
   footerButtonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
+
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.outline,
+    borderRadius: 6,
+    // backgroundColor: colors.primary,
+    width: '100%',
+    height: 50
   },
   footerButton: {
-    flex: 0.25,
+    flex: 0.2,
     borderRadius: 12,
     borderColor: colors.primaryDark,
     borderWidth: 1,
@@ -340,12 +390,25 @@ export const movieListStyles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     marginHorizontal: '5%',
-    backgroundColor: "#fff"
+    backgroundColor: colors.primary,
+    alignItems: "flex-start",
+    alignSelf: "flex-start",
+    // width: '100%',
   },
   footerButtonText: {
-    color: colors.primaryDark
+    color: 'white', 
+    fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: '200',
   }
 });
+
+
+
+
+
+
 
 export const movieSelect = StyleSheet.create({
   container: {
@@ -354,14 +417,30 @@ export const movieSelect = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'flex-start',
   },
+  
+  header: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'stretch',
+    textAlign: "center",
+    alignItems: 'center',
+    // justifyContent: 'center',
+    fontSize: 18,
+    fontWeight: "bold",
+    color: 'black', 
+    // marginLeft: 50, 
+  },
+
   listContainer: {},
   separator: {
     width: '100%',
     height: 1,
-    backgroundColor: colors.primaryLight
+    backgroundColor: colors.primaryD
   },
-  listItemContainer: {},
-  listItemTextContainer: {},
+  listItemContainer: { 
+  },
+  listItemTextContainer: {
+  },
   placeholderText: {},
   homescreenListEmpty: {}
 });

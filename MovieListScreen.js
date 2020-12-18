@@ -23,9 +23,10 @@ export class MovieListScreen extends React.Component {
     super(props);
 
     this.operation = this.props.route.params.operation;
-    // this.theList contains our list objects
     this.theList = this.props.route.params.item;
     this.currentUser = this.props.route.params.currentUser;
+    this.imageWidth = 125,
+      this.imageHeight = 200;
 
     let initText = '';
     // if you press the edit button on HomeScreen
@@ -251,6 +252,10 @@ export class MovieListScreen extends React.Component {
           <View style={movieListStyles.listOfItemsContainer}>
             <FlatList
               data={this.state.itemsList}
+              ItemSeparatorComponent={() => (
+                <View style={movieListStyles.separator}
+                />
+              )}
               renderItem={({ item, index }) => {
                 return (
                   <View style={movieListStyles.ItemContainer}>
@@ -258,12 +263,17 @@ export class MovieListScreen extends React.Component {
                       {/* edit item button */}
                       <TouchableOpacity
                         onPress={() => { this.onItemEdit(item) }}>
-                        <Text
-                          style={movieListStyles.ItemText}
-                          numberOfLines={1}
-                          ellipsizeMode='tail'
-                        >
-                          {item.text}
+                        <Text>
+                          {item.title}
+                        </Text>
+                        <Text>
+                          {item.director}
+                        </Text>
+                        <Text>
+                          {item.year}
+                        </Text>
+                        <Text>
+                          {item.description}
                         </Text>
                       </TouchableOpacity>
                     </View>

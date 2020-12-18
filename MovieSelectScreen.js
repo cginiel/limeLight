@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, TextInput, Text, View,
-  FlatList, TouchableOpacity, Alert
+  FlatList, TouchableOpacity, Alert, Image
 }
   from 'react-native';
 import { movieSelect, colors } from './Styles';
@@ -20,10 +20,10 @@ export class MovieSelectScreen extends React.Component {
     super(props);
 
     this.operation = this.props.route.params.operation;
-    
     this.moviesRef = firebase.firestore().collection('movies');
-
     this.loadMovies();
+    this.imageWidth = 75,
+      this.imageHeight = 100;
 
     this.state = {
       movies: [],
@@ -45,8 +45,8 @@ export class MovieSelectScreen extends React.Component {
     this.setState({
       movies: this.state.movies
     });
-
   }
+
   render() {
     return (
       <View style={movieSelect.container}>
@@ -81,6 +81,10 @@ export class MovieSelectScreen extends React.Component {
                       });
                     }}>
                     <View style={movieSelect.listItemTextContainer}>
+                      <Image
+                        style={{ width: this.imageWidth, height: this.imageHeight }}
+                        source={{ uri: item.imageURL }}
+                      />
                       <Text>
                         {item.title}
                       </Text>

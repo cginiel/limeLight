@@ -12,7 +12,7 @@ export class FriendProfileScreen extends React.Component{
       userSelected:[],
       product: {
         name:"Tony Baloney",
-        description:"'I love a good motion movie'",
+        description:"'I love a good motion picture'",
         created:"",
         images:[
           "https://i.ibb.co/1GxtvqT/p3.jpg", 

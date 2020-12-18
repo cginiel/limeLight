@@ -362,7 +362,7 @@ export const movieListStyles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   footer: {
-    flex: 0.4,
+    flex: 0.5,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -382,7 +382,7 @@ export const movieListStyles = StyleSheet.create({
     height: 50
   },
   footerButton: {
-    flex: 0.2,
+    flex: 0.3,
     borderRadius: 12,
     borderColor: colors.primaryDark,
     borderWidth: 1,
@@ -398,7 +398,7 @@ export const movieListStyles = StyleSheet.create({
   footerButtonText: {
     color: 'white', 
     fontSize: 20,
-    alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'center',
     fontWeight: '200',
   }

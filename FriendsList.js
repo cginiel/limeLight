@@ -68,9 +68,7 @@ export class FriendsListScreen extends React.Component {
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate('Search People')}>
-          {/* <View> */}
             <Text style={styles.footerButtonText}>Add More Friends</Text>
-          {/* </View> */}
         </TouchableOpacity>
       </View>
       </View>
@@ -143,23 +141,23 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50
   },
-  footerButton: {
-    flex: 2,
-    borderRadius: 12,
-    borderColor: '#3D7851',
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    marginHorizontal: '5%',
-    backgroundColor: '#68D48D',
+  // footerButton: {
+  //   flex: 1,
+  //   borderRadius: 12,
+  //   borderColor: '#3D7851',
+  //   borderWidth: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   padding: 15,
+  //   marginHorizontal: '5%',
+  //   backgroundColor: '#68D48D',
 
-    marginTop:12, 
-    height:20, 
-    width: '40%',
-  },
+  //   marginTop:12, 
+  //   height:20, 
+  //   width: '40%',
+  // },
   footerButtonText: {
-    color: 'white', 
+    color: 'black', 
     fontSize: 18,
     alignItems: 'center',
     justifyContent: 'center',

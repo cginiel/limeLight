@@ -114,7 +114,9 @@ import {
             <TouchableOpacity
         onPress={()=> {this.props.navigation.navigate("Friend Profile")}}
             >
-              <View> Add Friend</View>
+              <View> 
+                <Text>Add Friend</Text>
+              </View>
             </TouchableOpacity>
               </View>)}
             leftAvatar={{ source: { uri: item.picture.thumbnail } }}

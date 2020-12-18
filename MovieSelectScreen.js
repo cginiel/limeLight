@@ -70,7 +70,8 @@ export class MovieSelectScreen extends React.Component {
                           director: item.director,
                           year: item.year,
                           genre: item.genre,
-                          key: item.key
+                          key: item.key,
+                          imageURL: item.imageURL
                         }
                       } else {
                         theMovie = this.props.route.params.movie;

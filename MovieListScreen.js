@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, TextInput, Text, View,
-  FlatList, TouchableOpacity, Alert
+  FlatList, TouchableOpacity, Alert, Image
 }
   from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
@@ -25,8 +25,8 @@ export class MovieListScreen extends React.Component {
     this.operation = this.props.route.params.operation;
     this.theList = this.props.route.params.item;
     this.currentUser = this.props.route.params.currentUser;
-    this.imageWidth = 125,
-      this.imageHeight = 200;
+    this.imageWidth = 75,
+      this.imageHeight = 100;
 
     let initText = '';
     // if you press the edit button on HomeScreen
@@ -109,6 +109,7 @@ export class MovieListScreen extends React.Component {
       director: movie.director,
       year: movie.year,
       genre: movie.genre,
+      imageURL: movie.imageURL
     });
 
     if (item) { // false if undefined
@@ -117,6 +118,7 @@ export class MovieListScreen extends React.Component {
         director: movie.director,
         year: movie.year,
         genre: movie.genre,
+        imageURL: movie.imageURL,
         key: '' + addedItem.id });
     }
     this.setState({ itemsList: this.state.itemsList });
@@ -263,6 +265,10 @@ export class MovieListScreen extends React.Component {
                       {/* edit item button */}
                       <TouchableOpacity
                         onPress={() => { this.onItemEdit(item) }}>
+                        <Image
+                          style={{ width: this.imageWidth, height: this.imageHeight }}
+                          source={{ uri: item.imageURL }}
+                        />
                         <Text>
                           {item.title}
                         </Text>

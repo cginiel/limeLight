@@ -6,6 +6,7 @@ import { LoginScreen } from './LoginScreen';
 import { HomeScreen } from './HomeScreen';
 import { MovieListScreen } from './MovieListScreen';
 import { MovieSelectScreen } from './MovieSelectScreen';
+// import { ProductView } from './FriendDetail';
 // import { ChatScreen } from './ChatScreen';
 // import { CameraScreen } from './CameraScreen';
 
@@ -24,6 +25,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Movie Lists" component={MovieListScreen} />
         <Stack.Screen name="Select Movie" component={MovieSelectScreen} />
+        {/* <Stack.Screen name="Friend Detail" component={FriendDetail} /> */}
         {/* <Stack.Screen name="Chat" component={ChatScreen} /> */}
         {/* <Stack.Screen name="Camera" component={CameraScreen} /> */}
 

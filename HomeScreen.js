@@ -190,7 +190,7 @@ export class HomeScreen extends React.Component {
             "{this.currentUser.bio}"
           </Text>
           <Text>
-            {this.currentUser.location}
+            Location: {this.currentUser.location}
           </Text>
         </View>
         <View style={homeStyles.body}>
@@ -242,18 +242,27 @@ export class HomeScreen extends React.Component {
           </View>
         </View>
         <View style={homeStyles.footer}>
+        <View style={homeStyles.footerButtonContainer}>
           {/* add list button */}
+          <View style={homeStyles.footerButton}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate('Movie Lists',
                 { operation: "addMovieList",
                   currentUser: this.currentUser
                   })}>
-            <Ionicons name="ios-add"
-              size={80}
-              color={colors.primaryDark} />
+          <Text style={homeStyles.footerButtonText} > Add Movies</Text>
           </TouchableOpacity>
+          </View>
+          <View style={homeStyles.footerButton}>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('Friend List')}>
+          <Text style={homeStyles.footerButtonText}> Add Friends</Text>
+          </TouchableOpacity>
+          </View>
         </View>
+      </View>
       </View>
     )
   }
